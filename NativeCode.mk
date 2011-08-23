@@ -85,7 +85,12 @@ core_static_libraries := $(sort $(LOCAL_STATIC_LIBRARIES))
 
 include $(CLEAR_VARS)
 
-LOCAL_CFLAGS += -Wall -Wextra -Werror
+LOCAL_CFLAGS += -Wall -Wextra
+
+ifneq ($(TARGET_ARCH),mips)
+#Werror breaks mips16 CS Lite 4.5.2 compiler
+LOCAL_CFLAGS += -Werror
+endif
 
 ifeq ($(TARGET_ARCH),arm)
 # Ignore "note: the mangling of 'va_list' has changed in GCC 4.4"
