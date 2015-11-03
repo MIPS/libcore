@@ -114,6 +114,9 @@ LOCAL_MODULE := core-libart
 LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/JavaLibrary.mk
 LOCAL_REQUIRED_MODULES := tzdata
 LOCAL_JARJAR_RULES := $(LOCAL_PATH)/jarjar-rules.txt
+# Should not be dex-preopted as it isn't really a Dalvik boot jar or a
+# regular java library, but part of the image for ART.
+LOCAL_DEX_PREOPT := false
 include $(BUILD_JAVA_LIBRARY)
 
 # Path to the ICU4C data files in the Android device file system:
@@ -190,6 +193,9 @@ LOCAL_MODULE := core-libart-hostdex
 LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/JavaLibrary.mk
 LOCAL_REQUIRED_MODULES := tzdata-host
 LOCAL_JARJAR_RULES := $(LOCAL_PATH)/jarjar-rules.txt
+# Should not be dex-preopted as it isn't really a Dalvik boot jar or a
+# regular java library, but part of the image for ART.
+LOCAL_DEX_PREOPT := false
 include $(BUILD_HOST_DALVIK_JAVA_LIBRARY)
 
 # Make the core-tests library.
