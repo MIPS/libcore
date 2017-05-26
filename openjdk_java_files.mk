@@ -1514,7 +1514,6 @@ openjdk_java_files := \
     ojluni/src/main/java/sun/nio/ch/SocketAdaptor.java \
     ojluni/src/main/java/sun/nio/ch/SocketChannelImpl.java \
     ojluni/src/main/java/sun/nio/ch/SocketDispatcher.java \
-    ojluni/src/main/java/sun/nio/ch/SocketOptionRegistry.java \
     ojluni/src/main/java/sun/nio/ch/SourceChannelImpl.java \
     ojluni/src/main/java/sun/nio/ch/ThreadPool.java \
     ojluni/src/main/java/sun/nio/ch/UnixAsynchronousServerSocketChannelImpl.java \
@@ -1756,3 +1755,10 @@ openjdk_java_files := \
     $(openjdk_javadoc_files) \
     $(openjdk_lambda_stub_files)
 
+ifeq ($(TARGET_ARCH),$(filter $(TARGET_ARCH),mips mips64))
+openjdk_java_files += \
+    ojluni/src/main/java/sun/nio/ch/SocketOptionRegistry_mips.java
+else
+openjdk_java_files += \
+    ojluni/src/main/java/sun/nio/ch/SocketOptionRegistry.java
+endif
